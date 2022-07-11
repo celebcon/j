@@ -1,10 +1,628 @@
-<!DOCTYPE html>
 <html>
-<body>
 
-<h2>WEBSITE IS UPDATING, TRY AGAIN IN 3 MINUTES</h2>
-<img src="thumb.png" width="125" height="125">
+<style>
+p.a {
+  white-space: pre;
+  color: white;
+}
+</style>
+
+<body style="background-color:black;">
+
+<canvas id="myCanvas" onload = 'move()' onclick = "clickfunc()" width="800" height="400" style=" padding-left: 0;
+    padding-right: 0;
+	
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 0px;
+    display: block;border:3px solid white;">
+</canvas>
 
 </body>
-</html>
+
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "16px Arial";
+
+var canvasX = 0; 
+var canvasY = 0; 
+canvas.addEventListener("mousemove", function(e) { 
+    var cRect = canvas.getBoundingClientRect();              // Gets the CSS positions along with width/height
+    canvasX = Math.round(e.clientX - cRect.left);        // Subtract the 'left' of the canvas from the X/Y
+    canvasY = Math.round(e.clientY - cRect.top);         // positions to get make (0,0) the top left of the    
+});
+
+var hotelPage = function(scene,name) {
+	this.scene = scene;
+	this.name = name;
+	this.checking = false;
+	this.verify = false;
+	this.purchased = false; 
+	this.animx = 0;
+	this.animy = 0;
+	
+	this.mis = false;
+	this.cow = false;
+	this.dog = false;
+	this.anal = false;
+	this.rev = false;
+	this.pro = false;
+	
+	this.storeChosen = 0; 
+
+}
+
+hotelPage.prototype.draw = function() {
+  if (scene == this.scene && sendName == this.name){
+		ctx.drawImage(hotelroombg,0,0,800,400);
+		
+		if (fcurr == 0){ctx.drawImage(hotelroominfo,0,this.animy,800,400);}
+		if (fcurr == 1){ctx.drawImage(hotelroominfo2,0,this.animy,800,400);}
+		if (fcurr == 2){ctx.drawImage(hotelroominfo3,0,this.animy,800,400);}
+		if (fcurr == 3){ctx.drawImage(hotelroominfo4,0,this.animy,800,400);}
+		if (fcurr == 4){ctx.drawImage(hotelroominfo5,0,this.animy,800,400);}
+
+		ctx.drawImage(hotelroomsex,0,this.animy + 400,800,400);
+		
+		var myImage2 = new Image(100, 200);
+	    myImage2.src = 'celebs/' + this.name + '.png';
+	    ctx.drawImage(myImage2,0,0,300,400);
+		ctx.drawImage(hotelroomwrapper,0,0,800,400);
+		
+		ctx.font = "300 25px Times New Roman";
+	    ctx.fillStyle = "white";
+	    ctx.fillText("After the date, " + this.name + " brought you",330,30 + this.animy);
+	    ctx.fillText("back to her hotel room for some fun!",330,55 + this.animy);
+	
+		if (this.purchased == true && this.animy > -400){this.animy-=10 + (-this.animy/10)}
+		if (this.animy < -400){this.animy = -400;}
+		
+		if (this.verify == true && this.purchased == false){
+			if (fcurr == 0){printout+="\n\nForeplay: Lap Dance";}
+			if (fcurr == 1){printout+="\n\nForeplay: Blowjob";}
+			if (fcurr == 2){printout+="\n\nForeplay: Tit Fuck";}
+			if (fcurr == 3){printout+="\n\nForeplay: Footjob";}
+			if (fcurr == 4){printout+="\n\nForeplay: 69";}
+            printout+="\n\n Sex Acts: "
+			this.purchased = true;
+		}
+		
+		console.log(this.mis);
+		if (this.mis == true){ctx.drawImage(checkimg,320,79,138,137);}
+		if (this.cow == true){ctx.drawImage(checkimg,484,79,138,137);}
+		if (this.dog == true){ctx.drawImage(checkimg,652,79,138,137);}
+
+		if (this.anal == true){ctx.drawImage(checkimg,320,264,138,137);}
+		if (this.rev == true){ctx.drawImage(checkimg,484,264,138,137);}
+		if (this.pro == true){ctx.drawImage(checkimg,652,264,138,137);}
+        if (this.storeChosen > 2){
+			for(var i = 0; i < datingPageArray.length ; i++) {
+			    if (datingPageArray[i].name == sendName){datingPageArray[i].sexdone = true;}
+			}
+			fade = 1; sendScene = 1;
+		
+		}
+  }
+}
+
+var datingPage = function(scene,c1,c2,c3,name,s1,s2,s3) {
+	this.c1 = c1 + ((Math.round(Math.random()*2) - 1)*500);
+	this.c2 = c2 + ((Math.round(Math.random()*2) - 1)*500);
+	this.c3 = c3 + ((Math.round(Math.random()*2) - 1)*500);
+	
+	if (this.c1 == this.c2){this.c2+=500;}
+	if (this.c2 == this.c3){this.c3+=500;}
+
+	this.name = name;
+	this.scene = scene; 
+	this.s1 = s1;
+	this.s2 = s2;
+	this.s3 = s3;
+	
+	this.anim = 0;
+	this.sex = false;
+    this.sexdone = false;
+	this.checking = false;
+	this.verify = false;
+	this.purchased = false; 
+	this.printed = false; 
+	
+	this.result = "";
+	this.dates = 0;
+	
+	this.rng1 =  Math.round(Math.random()*100);
+	this.rng2 =  Math.round(Math.random()*100);
+	this.rng3 =  Math.round(Math.random()*100);
+
+};
+
+datingPage.prototype.draw = function() {
+  if (scene == this.scene && sendName == this.name){
+	ctx.drawImage(datingmenu,0,0,800,400)
+	
+	var myImage = new Image(100, 200);
+	myImage.src = 'celebs/' + this.name + '.png';
+	ctx.drawImage(myImage,435,28,277,372);
+
+	ctx.drawImage(datingmenuWrapper,0,0,800,400);
+	if (curr == 0){ctx.drawImage(rightarrow,0,0,800,400);}
+	if (curr != 0 && curr < manualArray.length - 1){ctx.drawImage(rightarrow,0,0,800,400); ctx.drawImage(leftarrow,0,0,800,400);}
+	if (curr == manualArray.length - 1){ctx.drawImage(leftarrow,0,0,800,400);}
+    
+	if (curr < manualArray.length - 1){this.anim+=5;
+		if (this.anim < 10){ctx.drawImage(rightarrow10,0,0,800,400);}
+		else if (this.anim < 20){ctx.drawImage(rightarrow20,0,0,800,400);}
+		else if (this.anim < 30){ctx.drawImage(rightarrow30,0,0,800,400);}
+		else if (this.anim < 40){ctx.drawImage(rightarrow40,0,0,800,400);}
+		else if (this.anim < 50){ctx.drawImage(rightarrow50,0,0,800,400);}
+		else if (this.anim < 60){ctx.drawImage(rightarrow60,0,0,800,400);}
+		else if (this.anim < 70){ctx.drawImage(rightarrow50,0,0,800,400);}
+		else if (this.anim < 80){ctx.drawImage(rightarrow40,0,0,800,400);}
+		else if (this.anim < 90){ctx.drawImage(rightarrow30,0,0,800,400);}
+		else if (this.anim < 100){ctx.drawImage(rightarrow20,0,0,800,400);}
+		else if (this.anim < 110){this.anim = 0;}
+	}
+	
+	ctx.drawImage(datinginfo,0,0,800,400);
+
+	ctx.font = "300 25px Times New Roman";
+	ctx.fillStyle = "white";
+	ctx.textAlign = "center";     
+	ctx.fillText(this.name,565,21);
+	
+	ctx.textAlign = "start";     
+	ctx.font = "400 25px Times New Roman";
+	ctx.fillStyle = "#26ed3a";
+	ctx.fillText(points.toLocaleString('en-US'),260,24);
+	ctx.fillText("$" + this.c1.toLocaleString('en-US'),323,113);
+	ctx.fillText("$" + this.c2.toLocaleString('en-US'),323,156);
+	ctx.fillText("$" + this.c3.toLocaleString('en-US'),323,202);
+
+	ctx.font = "900 25px Times New Roman";
+	ctx.fillStyle = "#abf556";
+	ctx.fillText(this.s1 + "%",302,256);
+	ctx.fillText(this.s2 + "%",305,304);
+	ctx.fillText(this.s3 + "%",305,354);
+	
+	if (this.purchased == true && this.dates == 1){
+	    if (this.rng1 <= this.s1 && this.sex == false){this.result = "first"; this.sex = true; printout+="\n\n" + this.name + ": " + String(this.dates) + " date";}
+	    if (this.rng1 > this.s1 && this.printed == false){this.printed = true; printout+="\n\n" + this.name + ": " + String(this.dates) + " date. No sex.";}
+
+	}
+
+	if (this.purchased == true && this.dates == 2 && this.sex == false){
+	    if (this.rng2 <= this.s2){this.result = "second"; this.sex = true;}
+	    if (this.rng2 > this.s2 && this.printed == false){this.printed = true; printout+="\n\n" + this.name + ": " + String(this.dates) + " dates. No sex.";}
+
+		if (this.sex == true){printout+="\n\n" + this.name + ": " + String(this.dates) + " dates";}
+	}
+	
+    if (this.purchased == true && this.dates == 3 && this.sex == false){
+	    if (this.rng3 <= this.s3){this.result = "third"; this.sex = true;}
+	    if (this.rng3 > this.s3 && this.printed == false){this.printed = true; printout+="\n\n" + this.name + ": " + String(this.dates) + " dates. No sex.";}
+
+		if (this.sex == true){printout+="\n\n" + this.name + ": " + String(this.dates) + " dates";}
+	}
+	
+	if (this.sex == true && this.sexdone == false){fade = 1; sendScene = 2;}
+	
+	if (this.purchased == true && this.sex == false){ctx.drawImage(sno,0,0,800,400);}
+	if (this.result == "first"){ctx.drawImage(sfirst,0,0,800,400);}
+	if (this.result == "second"){ctx.drawImage(ssecond,0,0,800,400);}
+	if (this.result == "third"){ctx.drawImage(sthird,0,0,800,400);}
+
+
+    if (this.dates == 1){ctx.drawImage(date1s,0,0,800,400);}
+    if (this.dates == 2){ctx.drawImage(date2s,0,0,800,400);}
+    if (this.dates == 3){ctx.drawImage(date3s,0,0,800,400);}
+  
+	if (this.checking == true){
+	    this.verify = true;
+		if (this.name != sendName){this.verify = false;}
+		if (this.scene != scene){this.verify = false;}
+		if (this.dates == 1 && points - this.c1 < 0){this.verify = false;}
+		if (this.dates == 2 && points - this.c2 < 0){this.verify = false;}
+		if (this.dates == 3 && points - this.c3 < 0){this.verify = false;}
+
+	}
+	
+	if (this.verify == true && this.purchased == false){
+	    if (this.dates == 1){points -= this.c1;}
+	    if (this.dates == 2){points -= this.c2;}
+	    if (this.dates == 3){points -= this.c3;}
+        
+		this.purchased = true;
+	}
+
+  }
+  
+  
+};
+
+
+var hotelPageArray = [];
+
+var datingPageArray = [];
+
+var manualArray = ["Milana Vayntrub","Hayley Atwell","Helga Lovekaty","Kate Hudson","Alexis Ren",
+"Danielle Panabaker","Marie Avgeropoulos","Zooey Deschanel","Lauren Cohan","Minka Kelly",
+"Sophie Turner","Anna Faris","Geraldine Viswanathan","Kelsea Ballerini","Emeraude Toubia",
+"Daisy Ridley","Eiza Gonzalez","Sarah Shahi","Alice Eve","Jordana Brewster","Keira Knightley",
+"Gillian Anderson","Karen Fukuhara","Erika Christensen","Hailee Steinfeld","Penelope Cruz",
+"Margot Robbie","Christina Hendricks","Kat Dennings","Taissa Farmiga","Scarlett Johansson","Amy Adams",
+"Kendall Jenner","Miranda Kerr","Brenda Song","Ana de Armas","Colleen Cole","Sandra Bullock",
+"Dakota Johnson","Joey King","Natalie Dormer","Rihanna","Zoe Kravitz","Olivia Munn","Linda Cardellini",
+"Pom Klementieff","Yanet Garcia","Taylor Swift","Nina Dobrev","Madison Beer","Shantel VanSanten"];
+
+
+
+for(var i = 0; i < 200 ; i++) {
+    var arrayrand1 = Math.round(Math.random()*(manualArray.length-1));
+    var arrayrand2 = Math.round(Math.random()*(manualArray.length-1));
+
+    var storedez = manualArray[arrayrand1]; 
+	var storedez2 = manualArray[arrayrand2];
+	
+	 manualArray[arrayrand1] = storedez2;
+	 manualArray[arrayrand2] = storedez;
+
+}
+
+console.log(manualArray);
+
+//var datingPage = function(scene,c1,c2,c3,name,s1,s2,s3) {
+datingPageArray.push(new datingPage(1,3000,4500,5000,"Milana Vayntrub",50,60,70)); 
+datingPageArray.push(new datingPage(1,2500,3000,4500,"Hayley Atwell",30,50,60)); 
+datingPageArray.push(new datingPage(1,2000,3000,4500,"Helga Lovekaty",30,40,55)); 
+datingPageArray.push(new datingPage(1,2500,3000,4000,"Kate Hudson",30,50,60)); 
+datingPageArray.push(new datingPage(1,2000,3000,4000,"Alexis Ren",20,30,50)); 
+
+datingPageArray.push(new datingPage(1,1500,3000,4000,"Danielle Panabaker",60,75,90)); 
+datingPageArray.push(new datingPage(1,1500,3000,4000,"Marie Avgeropoulos",50,60,80)); 
+datingPageArray.push(new datingPage(1,1000,2000,3000,"Zooey Deschanel",20,40,60)); 
+datingPageArray.push(new datingPage(1,1000,2500,3500,"Lauren Cohan",30,50,70)); 
+datingPageArray.push(new datingPage(1,1500,2500,3000,"Minka Kelly",40,60,70)); 
+datingPageArray.push(new datingPage(1,2500,4000,5000,"Sophie Turner",30,50,60)); 
+datingPageArray.push(new datingPage(1,1000,1500,2000,"Anna Faris",50,60,75)); 
+datingPageArray.push(new datingPage(1,1000,1500,2000,"Geraldine Viswanathan",60,80,90)); 
+datingPageArray.push(new datingPage(1,1000,2000,3500,"Kelsea Ballerini",30,45,70)); 
+datingPageArray.push(new datingPage(1,1000,2500,3500,"Emeraude Toubia",50,70,90)); 
+
+datingPageArray.push(new datingPage(1,2000,3000,3500,"Daisy Ridley",40,55,65)); 
+datingPageArray.push(new datingPage(1,2500,3500,5500,"Eiza Gonzalez",45,60,80)); 
+datingPageArray.push(new datingPage(1,1500,2000,3000,"Sarah Shahi",30,40,55)); 
+datingPageArray.push(new datingPage(1,3000,3500,6000,"Alice Eve",40,50,70)); 
+datingPageArray.push(new datingPage(1,1000,1500,2500,"Jordana Brewster",40,50,75)); 
+datingPageArray.push(new datingPage(1,1500,2000,3500,"Keira Knightley",55,65,85)); 
+datingPageArray.push(new datingPage(1,1000,2000,3000,"Gillian Anderson",60,70,80)); 
+datingPageArray.push(new datingPage(1,2000,2500,4000,"Karen Fukuhara",40,50,70)); 
+datingPageArray.push(new datingPage(1,1000,1500,3000,"Erika Christensen",60,70,90)); 
+datingPageArray.push(new datingPage(1,3000,4500,5500,"Hailee Steinfeld",40,60,80)); 
+datingPageArray.push(new datingPage(1,1500,2000,3000,"Penelope Cruz",30,50,65)); 
+
+datingPageArray.push(new datingPage(1,3000,4000,6000,"Margot Robbie",25,40,55)); 
+datingPageArray.push(new datingPage(1,2000,2500,4500,"Christina Hendricks",40,50,75)); 
+datingPageArray.push(new datingPage(1,1000,2500,4000,"Kat Dennings",30,45,65)); 
+datingPageArray.push(new datingPage(1,1500,3000,3500,"Taissa Farmiga",35,50,60)); 
+datingPageArray.push(new datingPage(1,3500,4000,6500,"Scarlett Johansson",20,30,55)); 
+datingPageArray.push(new datingPage(1,1000,1500,3500,"Amy Adams",30,45,80)); 
+
+datingPageArray.push(new datingPage(1,2500,3000,5500,"Kendall Jenner",25,40,65)); 
+datingPageArray.push(new datingPage(1,1500,2000,4500,"Miranda Kerr",20,30,50)); 
+datingPageArray.push(new datingPage(1,2500,4500,5000,"Brenda Song",50,70,80)); 
+datingPageArray.push(new datingPage(1,3500,4000,6000,"Ana de Armas",20,25,40)); 
+datingPageArray.push(new datingPage(1,1500,3000,3500,"Colleen Cole",45,60,70)); 
+datingPageArray.push(new datingPage(1,1000,2500,3000,"Sandra Bullock",40,60,75));
+
+datingPageArray.push(new datingPage(1,3000,4000,6000,"Dakota Johnson",60,75,90));
+datingPageArray.push(new datingPage(1,1000,1500,3000,"Joey King",25,40,65));
+datingPageArray.push(new datingPage(1,4500,5000,7500,"Natalie Dormer",60,70,85));
+datingPageArray.push(new datingPage(1,2500,3500,5000,"Rihanna",30,40,55));
+datingPageArray.push(new datingPage(1,1500,2500,3500,"Zoe Kravitz",45,65,85));
+datingPageArray.push(new datingPage(1,2000,2500,3000,"Olivia Munn",35,45,60));
+datingPageArray.push(new datingPage(1,1000,2500,4500,"Linda Cardellini",45,70,90));
+
+datingPageArray.push(new datingPage(1,1500,2000,4000,"Pom Klementieff",40,55,85));
+datingPageArray.push(new datingPage(1,1000,2500,5000,"Yanet Garcia",25,40,80));
+datingPageArray.push(new datingPage(1,1500,3000,4500,"Taylor Swift",10,25,40));
+datingPageArray.push(new datingPage(1,3000,4500,6000,"Nina Dobrev",55,70,85));
+datingPageArray.push(new datingPage(1,2000,3500,4000,"Madison Beer",40,60,70));
+datingPageArray.push(new datingPage(1,1000,3500,4000,"Shantel VanSanten",30,65,80));
+
+
+
+for(var i = 0; i < manualArray.length ; i++) {
+hotelPageArray.push(new hotelPage(2,manualArray[i]));
+
+}
+
+//hotelPageArray.push(new hotelPage(2,"Hayley Atwell"));
+
+
+function clickfunc(){
+
+if (scene == -20 && canvasX > 125 && canvasX < 670 && canvasY > 300 && canvasY < 380){fade = 1; sendScene = -19;}
+if (scene == -19 && canvasX > 520 && canvasX < 800 && canvasY > 345 && canvasY < 400){fade = 1; sendScene = -18;}
+if (scene == -18 && canvasX > 465 && canvasX < 775 && canvasY > 200 && canvasY < 277){fade = 1; sendScene = 1;}
+
+if (canvasX > 370 && canvasX < 455 && canvasY > 190 && canvasY < 290 && scene == 2 && fcurr != 0){fcurr-=1;} 
+if (canvasX > 675 && canvasX < 760 && canvasY > 190 && canvasY < 290 && scene == 2 && fcurr != 4){fcurr+=1;} 
+
+if (pointsoutscreen == 1 && scene == 1 && fade == 0){fade = 1; sendScene = 3;}
+
+if (canvasX > 300 && canvasY > 180 && canvasY < 300 && scene == 3){fade = 1; sendScene = 4; copytoclipboard(printout);}
+
+if (scene == 2){
+	for(var i = 0; i < hotelPageArray.length ; i++) {
+	     if (scene == hotelPageArray[i].scene && sendName == hotelPageArray[i].name && canvasX > 440 && canvasX < 700 && canvasY > 340 && canvasY < 400 && scene == 2){
+			hotelPageArray[i].verify = true;
+		 }
+		 if (scene == hotelPageArray[i].scene && sendName == hotelPageArray[i].name && hotelPageArray[i].purchased == true){
+			if (canvasX > 305 && canvasX < 470 && canvasY > 40 && canvasY < 220 && hotelPageArray[i].mis == false){hotelPageArray[i].mis = true; printout+="Missionary "; hotelPageArray[i].storeChosen+=1;}
+			if (canvasX > 473 && canvasX < 635 && canvasY > 40 && canvasY < 220 && hotelPageArray[i].cow == false){hotelPageArray[i].cow = true; printout+="Cowgirl "; hotelPageArray[i].storeChosen+=1;}
+			if (canvasX > 640 && canvasX < 800 && canvasY > 40 && canvasY < 220 && hotelPageArray[i].dog == false){hotelPageArray[i].dog = true; printout+="Doggystyle "; hotelPageArray[i].storeChosen+=1;}
+
+			if (canvasX > 305 && canvasX < 470 && canvasY > 225 && canvasY < 400 && hotelPageArray[i].anal == false){hotelPageArray[i].anal = true; printout+="Anal "; hotelPageArray[i].storeChosen+=1;}
+			if (canvasX > 473 && canvasX < 635 && canvasY > 225 && canvasY < 400 && hotelPageArray[i].rev == false){hotelPageArray[i].rev = true; printout+="Reverse Cowgirl "; hotelPageArray[i].storeChosen+=1;}
+			if (canvasX > 640 && canvasX < 800 && canvasY > 225 && canvasY < 400 && hotelPageArray[i].pro == false){hotelPageArray[i].pro = true; printout+="Pronebone "; hotelPageArray[i].storeChosen+=1;}
+
+		 }
+
+	}
+
+
+} 
+
+
+if (canvasX > 730 && scene == 1 && curr < manualArray.length-1){curr+=1; sendName = manualArray[curr];} 
+if (canvasX < 70 && scene == 1 && curr != 0){curr-=1; sendName = manualArray[curr];}
+
+	for(var i = 0; i < datingPageArray.length ; i++) {
+		if (scene == datingPageArray[i].scene && sendName == datingPageArray[i].name){
+		    if (canvasX > 30 && canvasX < 750 && datingPageArray[i].purchased == true){errormsg = 2;}
+			if (canvasX > 82 && canvasX < 410 && canvasY > 80 && canvasY < 126  && points >= datingPageArray[i].c1){if (datingPageArray[i].purchased == false){datingPageArray[i].dates = 1;} datingPageArray[i].checking = true;}
+			if (canvasX > 82 && canvasX < 410 && canvasY > 130 && canvasY < 172  && points >= datingPageArray[i].c2){if (datingPageArray[i].purchased == false){datingPageArray[i].dates = 2;} datingPageArray[i].checking = true;}
+			if (canvasX > 82 && canvasX < 410 && canvasY > 176 && canvasY < 215  && points >= datingPageArray[i].c3){if (datingPageArray[i].purchased == false){datingPageArray[i].dates = 3;} datingPageArray[i].checking = true;}
+			
+			if (canvasX > 82 && canvasX < 410 && canvasY > 80 && canvasY < 126  && points < datingPageArray[i].c1){errormsg = 1;}
+			if (canvasX > 82 && canvasX < 410 && canvasY > 130 && canvasY < 172  && points < datingPageArray[i].c2){errormsg = 1;}
+			if (canvasX > 82 && canvasX < 410 && canvasY > 176 && canvasY < 215  && points < datingPageArray[i].c3){errormsg = 1;}
+
+        }
+				//if (canvasX > datingPageArray[i].x - shiftX && canvasX < datingPageArray[i].x + datingPageArray[i].w - shiftX){
+					//if (canvasY > datingPageArray[i].y - shiftY && canvasY < datingPageArray[i].y + datingPageArray[i].h - shiftY){
+						//if (scene == datingPageArray[i].scene){datingPageArray[i].checking = true;}
+						
+					//}
+					
+				//}
+				
+	}
+
+
+
+}//End clickfunc
+
+var myVar = setInterval(move, 20);
+
+var scene = -20; 
+var points = 30000;
+
+var shiftX = 0;
+var shiftY = 0;
+
+var printout = "";
+var fade = 0;
+
+var brightFac = 0; 
+var sendScene = 0;
+
+var curr = 0;
+var fcurr = 0;
+var sendName = manualArray[0];
+
+var errormsg = 0;
+var errortimer = 0;
+
+var pointsoutscreen = 0;
+
+function move() {
+
+//BG
+ctx.fillStyle = "blue";
+ctx.fillRect(0,0, 800, 400);
+
+if (scene == -20){ctx.drawImage(intro,0,0,800,400);}
+
+if (scene == -19){
+	ctx.drawImage(intro2,0,0,800,400);
+}
+if (scene == -18){ctx.drawImage(intro3,0,0,800,400);}
+
+if (points <= 0 && scene == 1){pointsoutscreen = 1;}
+
+if (scene == 3){ctx.drawImage(outmoney,0,0,800,400);}
+
+if (scene == 4){ctx.drawImage(end,0,0,800,400);}
+
+//Prototypes
+for(var i = 0; i < datingPageArray.length ; i++) {
+        datingPageArray[i].draw();
+}
+
+for(var i = 0; i < hotelPageArray.length ; i++) {
+        hotelPageArray[i].draw();
+}
+
+if (pointsoutscreen == 1 && scene == 1 && fade == 0){ctx.drawImage(outimg,0,0,800,400);}
+
+
+document.getElementById("demo").innerHTML = printout; 
+
+//Errors
+
+if (errormsg == 2){
+errortimer+=5;
+console.log(errortimer);
+if (errortimer < 10){ctx.drawImage(datedimg1,0,0,800,400);}
+else if (errortimer < 20){ctx.drawImage(datedimg2,0,0,800,400);}
+else if (errortimer < 30){ctx.drawImage(datedimg3,0,0,800,400);}
+else if (errortimer < 80){ctx.drawImage(datedimg4,0,0,800,400);}
+else if (errortimer < 90){ctx.drawImage(datedimg3,0,0,800,400);}
+else if (errortimer < 100){ctx.drawImage(datedimg2,0,0,800,400);}
+else if (errortimer < 110){ctx.drawImage(datedimg1,0,0,800,400);}
+if (errortimer > 109){errortimer = 0; errormsg = 0;}
+}
+
+if (errormsg == 1){
+	errortimer+=5;
+	if (errortimer >= 0 && errortimer < 10){ctx.drawImage(errorimg1,0,0,800,400);}
+	if (errortimer >= 10 && errortimer < 20){ctx.drawImage(errorimg2,0,0,800,400);}
+	if (errortimer >= 20 && errortimer < 30){ctx.drawImage(errorimg3,0,0,800,400);}
+	if (errortimer >= 30 && errortimer < 40){ctx.drawImage(errorimg4,0,0,800,400);}
+	if (errortimer >= 40 && errortimer < 120){ctx.drawImage(errorimg5,0,0,800,400);}
+	if (errortimer >= 120 && errortimer < 130){ctx.drawImage(errorimg3,0,0,800,400);}
+	if (errortimer >= 130 && errortimer < 140){ctx.drawImage(errorimg2,0,0,800,400);}
+	if (errortimer >= 140 && errortimer < 150){ctx.drawImage(errorimg1,0,0,800,400);}
+    if (errortimer >= 150){errormsg = 0; errortimer = 0;}
+	
+}
+
+//Fade
+if (fade == 1){brightFac += 10;
+	if (brightFac < 10){ctx.drawImage(black10,0,0,800,400);}
+	if (brightFac >= 10 && brightFac < 20){ctx.drawImage(black10,0,0,800,400);}
+	if (brightFac >= 20 && brightFac < 30){ctx.drawImage(black20,0,0,800,400);}
+	if (brightFac >= 30 && brightFac < 40){ctx.drawImage(black30,0,0,800,400);}
+	if (brightFac >= 40 && brightFac < 50){ctx.drawImage(black40,0,0,800,400);}
+	if (brightFac >= 50 && brightFac < 60){ctx.drawImage(black50,0,0,800,400);}
+	if (brightFac >= 60 && brightFac < 70){ctx.drawImage(black60,0,0,800,400);}
+	if (brightFac >= 70 && brightFac < 80){ctx.drawImage(black70,0,0,800,400);}
+	if (brightFac >= 80 && brightFac < 90){ctx.drawImage(black80,0,0,800,400);}
+	if (brightFac >= 90 && brightFac < 100){ctx.drawImage(black90,0,0,800,400);}
+	if (brightFac >= 100 && brightFac < 110){ctx.drawImage(black100,0,0,800,400);}
+	if (brightFac >= 110){ctx.drawImage(black100,0,0,800,400); fade = 2; scene = sendScene;}
+}
+
+if (fade == 2){brightFac -= 20;
+	if (brightFac < 10){ctx.drawImage(black10,0,0,800,400);}
+	if (brightFac >= 10 && brightFac < 20){ctx.drawImage(black10,0,0,800,400);}
+	if (brightFac >= 20 && brightFac < 30){ctx.drawImage(black20,0,0,800,400);}
+	if (brightFac >= 30 && brightFac < 40){ctx.drawImage(black30,0,0,800,400);}
+	if (brightFac >= 40 && brightFac < 50){ctx.drawImage(black40,0,0,800,400);}
+	if (brightFac >= 50 && brightFac < 60){ctx.drawImage(black50,0,0,800,400);}
+	if (brightFac >= 60 && brightFac < 70){ctx.drawImage(black60,0,0,800,400);}
+	if (brightFac >= 70 && brightFac < 80){ctx.drawImage(black70,0,0,800,400);}
+	if (brightFac >= 80 && brightFac < 90){ctx.drawImage(black80,0,0,800,400);}
+	if (brightFac >= 90 && brightFac < 100){ctx.drawImage(black90,0,0,800,400);}
+	if (brightFac >= 100 && brightFac < 110){ctx.drawImage(black100,0,0,800,400);}
+	if (brightFac < 10){ctx.drawImage(black10,0,0,800,400); fade = 0; brightFac = 0; }
+}
+
+
+//BOTTOM DEBUGGERS
+ctx.fillStyle = "gray";
+ctx.fillRect(0,400, 800, 400);
+
+ctx.font = "20px Arial";
+ctx.fillStyle = "white";
+ctx.fillText("X: " + canvasX,4,420);
+ctx.fillText("Y: " + canvasY,3,440);
+
+ctx.fillText("shiftX: " + shiftX,220,420);
+ctx.fillText("shiftY: " + shiftY,220,440);
+
+ctx.fillText("Scene: " + scene,80,420);
+ctx.fillText("Points: " + points,80,440);
+
+ctx.fillText("sendScene: " + sendScene,400,420);
+ctx.fillText("curr: " + curr,400,440);
+
+}//End of FUNCTION
+
+function copytoclipboard(text) {
+   const elem = document.createElement('textarea');
+   elem.value = text;
+   document.body.appendChild(elem);
+   elem.select();
+   document.execCommand('copy');
+   document.body.removeChild(elem);
+}
+</script>
+
+<p class="a" id = "demo" value = ""></p>
+
+<img id="datingmenu"  style="display:none; visibility:hidden;" src="menu/datingmenu.png" alt="">
+<img id="datingmenuWrapper"  style="display:none; visibility:hidden;" src="menu/datingmenuWrapper.png" alt="">
+<img id="sidearrows"  style="display:none; visibility:hidden;" src="menu/sidearrows.png" alt="">
+<img id="sidearrow0"  style="display:none; visibility:hidden;" src="menu/sidearrow0.png" alt="">
+
+<img id="datinginfo"  style="display:none; visibility:hidden;" src="menu/datinginfo.png" alt="">
+<img id="sfirst"  style="display:none; visibility:hidden;" src="menu/sfirst.png" alt="">
+<img id="ssecond"  style="display:none; visibility:hidden;" src="menu/ssecond.png" alt="">
+<img id="sthird"  style="display:none; visibility:hidden;" src="menu/sthird.png" alt="">
+<img id="sno"  style="display:none; visibility:hidden;" src="menu/sno.png" alt="">
+<img id="hotelroomwrapper"  style="display:none; visibility:hidden;" src="menu/hotelroomwrapper.png" alt="">
+<img id="hotelroominfo"  style="display:none; visibility:hidden;" src="menu/hotelroominfo.png" alt="">
+<img id="hotelroominfo2"  style="display:none; visibility:hidden;" src="menu/hotelroominfo2.png" alt="">
+<img id="hotelroominfo3"  style="display:none; visibility:hidden;" src="menu/hotelroominfo3.png" alt="">
+<img id="hotelroominfo4"  style="display:none; visibility:hidden;" src="menu/hotelroominfo4.png" alt="">
+<img id="hotelroominfo5"  style="display:none; visibility:hidden;" src="menu/hotelroominfo5.png" alt="">
+
+<img id="hotelroomsex"  style="display:none; visibility:hidden;" src="menu/hotelroomsex.png" alt="">
+
+<img id="hotelroombg"  style="display:none; visibility:hidden;" src="menu/hotelroombg.png" alt="">
+<img id="outmoney"  style="display:none; visibility:hidden;" src="menu/outmoney.png" alt="">
+
+<img id="checkimg"  style="display:none; visibility:hidden;" src="gui/check.png" alt="">
+<img id="outimg"  style="display:none; visibility:hidden;" src="gui/outimg.png" alt="">
+<img id="leftarrow"  style="display:none; visibility:hidden;" src="gui/leftarrow.png" alt="">
+<img id="rightarrow"  style="display:none; visibility:hidden;" src="gui/rightarrow.png" alt="">
+<img id="rightarrow10"  style="display:none; visibility:hidden;" src="gui/rightarrow10.png" alt="">
+<img id="rightarrow20"  style="display:none; visibility:hidden;" src="gui/rightarrow20.png" alt="">
+<img id="rightarrow30"  style="display:none; visibility:hidden;" src="gui/rightarrow30.png" alt="">
+<img id="rightarrow40"  style="display:none; visibility:hidden;" src="gui/rightarrow40.png" alt="">
+<img id="rightarrow50"  style="display:none; visibility:hidden;" src="gui/rightarrow50.png" alt="">
+<img id="rightarrow60"  style="display:none; visibility:hidden;" src="gui/rightarrow60.png" alt="">
+
+
+<img id="intro"  style="display:none; visibility:hidden;" src="menu/intro.png" alt="">
+<img id="intro2"  style="display:none; visibility:hidden;" src="menu/intro2.png" alt="">
+<img id="intro3"  style="display:none; visibility:hidden;" src="menu/intro3.png" alt="">
+<img id="end"  style="display:none; visibility:hidden;" src="menu/end.png" alt="">
+
+
+<img id="date1s"  style="display:none; visibility:hidden;" src="menu/date1s.png" alt="">
+<img id="date2s"  style="display:none; visibility:hidden;" src="menu/date2s.png" alt="">
+<img id="date3s"  style="display:none; visibility:hidden;" src="menu/date3s.png" alt="">
+
+<img id="black10"  style="display:none; visibility:hidden;" src="fade/black10.png" alt="">
+<img id="black20"  style="display:none; visibility:hidden;" src="fade/black20.png" alt="">
+<img id="black30"  style="display:none; visibility:hidden;" src="fade/black30.png" alt="">
+<img id="black40"  style="display:none; visibility:hidden;" src="fade/black40.png" alt="">
+<img id="black50"  style="display:none; visibility:hidden;" src="fade/black50.png" alt="">
+<img id="black60"  style="display:none; visibility:hidden;" src="fade/black60.png" alt="">
+<img id="black70"  style="display:none; visibility:hidden;" src="fade/black70.png" alt="">
+<img id="black80"  style="display:none; visibility:hidden;" src="fade/black80.png" alt="">
+<img id="black90"  style="display:none; visibility:hidden;" src="fade/black90.png" alt="">
+<img id="black100"  style="display:none; visibility:hidden;" src="fade/black100.png" alt="">
+
+<img id="errorimg1"  style="display:none; visibility:hidden;" src="error/errorimg1.png" alt="">
+<img id="errorimg2"  style="display:none; visibility:hidden;" src="error/errorimg2.png" alt="">
+<img id="errorimg3"  style="display:none; visibility:hidden;" src="error/errorimg3.png" alt="">
+<img id="errorimg4"  style="display:none; visibility:hidden;" src="error/errorimg4.png" alt="">
+<img id="errorimg5"  style="display:none; visibility:hidden;" src="error/errorimg5.png" alt="">
+
+<img id="datedimg1"  style="display:none; visibility:hidden;" src="error/datedimg1.png" alt="">
+<img id="datedimg2"  style="display:none; visibility:hidden;" src="error/datedimg2.png" alt="">
+<img id="datedimg3"  style="display:none; visibility:hidden;" src="error/datedimg3.png" alt="">
+<img id="datedimg4"  style="display:none; visibility:hidden;" src="error/datedimg4.png" alt="">
+
+
+</html> 
+
+
+
 
